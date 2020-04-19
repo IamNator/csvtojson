@@ -12,14 +12,24 @@ converter()
     .fromFile(csvFilePath)
     .then((jsonObject) => {
       //console.log(jsonObject)
-      fs.writeFileSync(jsonFilePath, JSON.stringify(jsonObject) )
+      var jsonContent = JSON.stringify(jsonObject, null, 2)
+
+      // fs.writeFileSync(jsonFilePath, jsonContent)
+      // console.log('Converted to json and saved in ', jsonFilePath)
+
+      fs.writeFile(jsonFilePath, jsonContent, 'utf8', (error) => {
+      if (error) {console.log(error.message)}
       console.log('Converted to json and saved in ', jsonFilePath)
+      } )
+
+
     })
     //
     // fs.writeFile(jsonFilePath, jsonObject, 'utf8', (error) => {
     //   if (error) {console.log(error.message)}
     //   console.log('Converted to json and saved in ', jsonFilePath)
     // } )
+
 
 }
 
